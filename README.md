@@ -5,7 +5,7 @@
 
 ## Fonctionnalités
 
--Création d'une application pour un kebabiste
+- Création d'une application pour un kebabiste
 
 ### Pré-requis
 
@@ -23,23 +23,23 @@ Executez la commande: ``git clone https://github.com/BastienCouder/kebabier-part
 Dans le dossier créé précédemment ->
 
 Client : 
-Executez la commande: ``cd client``
-Crée un fichier .env à la racine du dossier et ajouter:   ``REACT_APP_API_URL=http://localhost:5000``
-Executez la commande: ``npm i`` ``npm run dev``
+- Executez la commande: ``cd client``
+- Crée un fichier .env à la racine du dossier et ajouter:   ``REACT_APP_API_URL=http://localhost:5000``
+- Executez la commande: ``npm i`` ``npm run dev``
 
 Executez la commande: 
 
 Ouvrez un autre terminal ->
 
 Serveur :
-Executez les commande: ``cd server``
-Crée un fichier .env à la racine du dossier et ajouter:  
+- Executez les commande: ``cd server``
+- Crée un fichier .env à la racine du dossier et ajouter:  
 ``
 PORT=5000
 MONGO_URI=mongodb+srv://kebabiste:5PvoSioN6s9s79RA@cluster0.kig3gl0.mongodb.net/
 CLIENT_URL=http://localhost:3000
 ``
-Executez la commande: ``npm i`` ``npm run dev``
+- Executez la commande: ``npm i`` ``npm run dev``
 
 Utilisé l'application ->
 
