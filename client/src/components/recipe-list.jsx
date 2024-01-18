@@ -18,7 +18,6 @@ function RecipeList({ recipes }) {
   };
 
   const handleDeleteRecipe = async (recipeId) => {
-    console.log(recipeId);
     await deleteRecipe(recipeId);
   };
 
@@ -35,7 +34,8 @@ function RecipeList({ recipes }) {
               {recipe.name}
             </h3>
             <p className="font-normal text-gray-700">
-              Ingrédients : {recipe.ingredients}
+              <span className="font-semibold">Ingrédients :</span>{" "}
+              {recipe.ingredients}
             </p>
             <select
               onChange={(e) => handleSauceChange(recipe._id, e.target.value)}
@@ -44,7 +44,18 @@ function RecipeList({ recipes }) {
               <option value="">Choisir une sauce</option>
               <option value="mayonnaise">Mayonnaise</option>
               <option value="ketchup">Ketchup</option>
+              <option value="samouraï">samouraï</option>
+              <option value="algérienne">algérienne</option>
+              <option value="fromagère">fromagère</option>
+              <option value="barbecue">barbecue</option>
               <option value="harissa">Harissa</option>
+              <option value="sauce blanche">Sauce blanche</option>
+              <option value="sauce tahini">Sauce tahini</option>
+              <option value="sauce tartare">Sauce tartare</option>
+              <option value="sauce vegan">Sauce vegan</option>
+              <option value="sauce yaourt à la menthe">
+                Sauce yaourt à la menthe
+              </option>
             </select>
             <div className="flex gap-4">
               <button

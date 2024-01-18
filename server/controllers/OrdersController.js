@@ -3,7 +3,9 @@ import fetch from "node-fetch";
 
 const readAllOrders = async (req, res) => {
   try {
-    const orders = await Order.find({}).sort({ orderDate: 1 });
+    const orders = await Order.find({ isValidated: false })
+      .sort({ orderDate: 1 })
+      .populate("recipe", "name ingredients");
     res.status(200).json(orders);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -23,10 +25,10 @@ const createOrder = async (req, res) => {
     }
     const timeData = await timeResponse.json();
 
-    // Créer la nouvelle commande
+    const { recipe, sauce } = req.body;
     const newOrder = new Order({
-      recipe: req.body.recipe,
-      sauce: req.body.sauce,
+      recipe,
+      sauce,
       orderDate: new Date(timeData.datetime),
     });
 
@@ -37,9 +39,26 @@ const createOrder = async (req, res) => {
   }
 };
 
+const updateOrder = async (req, res) => {
+  try {
+    const updatedOrder = await Order.findByIdAndUpdate(
+      req.params.id,
+      { isValidated: true },
+      { new: true }
+    );
+    if (!updatedOrder) {
+      return res.status(404).json({ message: "Commande non trouvée" });
+    }
+    res.status(200).json(updatedOrder);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 const OrdersController = {
   readAllOrders,
   createOrder,
+  updateOrder,
 };
 
 export { OrdersController };

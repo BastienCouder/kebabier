@@ -1,6 +1,8 @@
+import { apiUrl } from "../lib/utils";
+
 export async function addRecipe(recipe) {
   try {
-    const response = await fetch(`${"http://localhost:5000"}/recipes`, {
+    const response = await fetch(`${apiUrl}/recipes`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -13,6 +15,7 @@ export async function addRecipe(recipe) {
     }
 
     const data = await response.json();
+    window.location.reload();
     console.log("Recette ajoutée avec succès : ", data);
   } catch (error) {
     console.error("Erreur lors de l'ajout de la recette : ", error);
@@ -21,7 +24,7 @@ export async function addRecipe(recipe) {
 
 export async function listRecipes() {
   try {
-    const response = await fetch(`${"http://localhost:5000"}/recipes`, {
+    const response = await fetch(`${apiUrl}/recipes`, {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -40,6 +43,18 @@ export async function listRecipes() {
   }
 }
 
+export async function listOrders() {
+  try {
+    const response = await fetch(`${apiUrl}/orders`);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error("Erreur lors de la récupération des commandes : ", error);
+  }
+}
+
 export async function sendToKitchen(recipeId, sauce) {
   try {
     const orderData = {
@@ -47,7 +62,7 @@ export async function sendToKitchen(recipeId, sauce) {
       sauce: sauce,
     };
 
-    const response = await fetch(`${"http://localhost:5000"}/orders`, {
+    const response = await fetch(`${apiUrl}/orders`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -58,8 +73,8 @@ export async function sendToKitchen(recipeId, sauce) {
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-
     const result = await response.json();
+    window.location.reload();
     console.log("Commande créée avec succès : ", result);
   } catch (error) {
     console.error("Erreur lors de la création de la commande : ", error);
@@ -68,19 +83,36 @@ export async function sendToKitchen(recipeId, sauce) {
 
 export async function deleteRecipe(recipeId) {
   try {
-    const response = await fetch(
-      `${"http://localhost:5000"}/recipes/${recipeId}`,
-      {
-        method: "DELETE",
-      }
-    );
+    const response = await fetch(`${apiUrl}/recipes/${recipeId}`, {
+      method: "DELETE",
+    });
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-
+    window.location.reload();
     console.log("Recette supprimée avec succès");
   } catch (error) {
     console.error("Erreur lors de la suppression de la recette : ", error);
+  }
+}
+
+export async function handleCompleteOrder(orderId) {
+  try {
+    const response = await fetch(
+      `http://localhost:5000/orders/${orderId}/complete`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    window.location.reload();
+  } catch (error) {
+    console.error("Erreur lors de la mise à jour de la commande : ", error);
   }
 }

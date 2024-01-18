@@ -11,6 +11,10 @@ const orderSchema = new mongoose.Schema({
     default: Date.now,
   },
   sauce: String,
+  isValidated: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 export default mongoose.model("Order", orderSchema);

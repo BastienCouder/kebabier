@@ -12,7 +12,6 @@ function AddRecipeForm() {
       return;
     }
     const recipe = { name, ingredients };
-    console.log(recipe);
     await addRecipe(recipe);
 
     setName("");
