@@ -6,7 +6,8 @@
   "main": "index.js",
   "scripts": {
     "server": "nodemon server.js",
-    "buildtest": "npm i && nodemon server.js"
+    "buildtest": "npm i && nodemon server.js",
+    "build": "npm i"
   },
   "test": "echo \"Error: no test specified\" && exit 1",
   "author": "",
