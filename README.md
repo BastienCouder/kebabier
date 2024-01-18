@@ -25,7 +25,7 @@ Dans le dossier créé précédemment ->
 Client : 
 - Executez la commande: ``cd client``
 - Crée un fichier .env à la racine du dossier et ajouter:   ``REACT_APP_API_URL=http://localhost:5000``
-- Executez la commande: ``npm i`` ``npm run dev``
+- Executez la commande: ``npm i`` ``npm run start``
 
 Ouvrez un autre terminal ->
 
@@ -37,7 +37,7 @@ PORT=5000
 MONGO_URI=mongodb+srv://kebabiste:5PvoSioN6s9s79RA@cluster0.kig3gl0.mongodb.net/
 CLIENT_URL=http://localhost:3000
 ``
-- Executez la commande: ``npm i`` ``npm run dev``
+- Executez la commande: ``npm i`` ``npm run server``
 
 Utilisé l'application ->
 
