@@ -27,8 +27,6 @@ Client :
 - Crée un fichier .env à la racine du dossier et ajouter:   ``REACT_APP_API_URL=http://localhost:5000``
 - Executez la commande: ``npm i`` ``npm run dev``
 
-Executez la commande: 
-
 Ouvrez un autre terminal ->
 
 Serveur :
