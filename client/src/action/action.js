@@ -40,14 +40,19 @@ export async function listRecipes() {
   }
 }
 
-export async function sendToKitchen(recipe) {
+export async function sendToKitchen(recipeId, sauce) {
   try {
-    const response = await fetch(`${"http://localhost:5000"}/kitchen`, {
+    const orderData = {
+      recipe: recipeId,
+      sauce: sauce,
+    };
+
+    const response = await fetch(`${"http://localhost:5000"}/orders`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(recipe),
+      body: JSON.stringify(orderData),
     });
 
     if (!response.ok) {
@@ -55,9 +60,9 @@ export async function sendToKitchen(recipe) {
     }
 
     const result = await response.json();
-    console.log("Recette envoyée en cuisine avec succès : ", result);
+    console.log("Commande créée avec succès : ", result);
   } catch (error) {
-    console.error("Erreur lors de l'envoi en cuisine : ", error);
+    console.error("Erreur lors de la création de la commande : ", error);
   }
 }
 

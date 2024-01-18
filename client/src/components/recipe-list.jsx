@@ -1,9 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { deleteRecipe, sendToKitchen } from "../action/action";
 
 function RecipeList({ recipes }) {
-  const handleSendToKitchen = async (recipe) => {
-    await sendToKitchen(recipe);
+  const [selectedSauces, setSelectedSauces] = useState({});
+
+  const handleSauceChange = (recipeId, sauce) => {
+    setSelectedSauces({ ...selectedSauces, [recipeId]: sauce });
+  };
+
+  const handleSendToKitchen = async (recipeId) => {
+    const sauce = selectedSauces[recipeId];
+    if (!sauce) {
+      alert("Veuillez sélectionner une sauce.");
+      return;
+    }
+    await sendToKitchen(recipeId, sauce);
   };
 
   const handleDeleteRecipe = async (recipeId) => {
@@ -26,14 +37,25 @@ function RecipeList({ recipes }) {
             <p className="font-normal text-gray-700">
               Ingrédients : {recipe.ingredients}
             </p>
+            <select
+              onChange={(e) => handleSauceChange(recipe._id, e.target.value)}
+              className="p-2 border border-gray-300 rounded"
+            >
+              <option value="">Choisir une sauce</option>
+              <option value="mayonnaise">Mayonnaise</option>
+              <option value="ketchup">Ketchup</option>
+              <option value="harissa">Harissa</option>
+            </select>
             <div className="flex gap-4">
-              <button onClick={() => handleSendToKitchen(recipe)}>
+              <button
+                className="bg-zinc-700 px-4 py-2 rounded-md text-white"
+                onClick={() => handleSendToKitchen(recipe._id)}
+              >
                 Envoyer en cuisine
               </button>
               <button
-                onClick={() => {
-                  handleDeleteRecipe(recipe._id);
-                }}
+                className="bg-red-700 px-4 py-2 rounded-md text-white"
+                onClick={() => handleDeleteRecipe(recipe._id)}
               >
                 Supprimer
               </button>

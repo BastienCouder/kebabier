@@ -52,7 +52,12 @@ function AddRecipeForm() {
           className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
         />
       </div>
-      <button type="submit">Ajouter la recette</button>
+      <button
+        type="submit"
+        className="bg-zinc-700 px-4 py-2 rounded-md text-white"
+      >
+        Ajouter la recette
+      </button>
     </form>
   );
 }

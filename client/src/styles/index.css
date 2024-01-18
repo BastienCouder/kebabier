@@ -15,10 +15,3 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-
-button {
-  background: #4a4a4a;
-  color: #f0f8ff;
-  padding: 0.5rem 0.8rem;
-  border-radius: 5px;
-}
