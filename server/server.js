@@ -2,7 +2,11 @@ import express from "express";
 import dotenv from "dotenv";
 import http from "http";
 import cors from "cors";
+import { connectDB } from "./config/db.js";
 import RecipeRouter from "./routes/recipes.routes.js";
+
+// Connexion à la DB
+connectDB();
 
 const app = express();
 const server = http.createServer(app);
